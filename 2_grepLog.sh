@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # sync the logs...
-sh 1_syncWafLogs.sh
+#sh 1_syncWafLogs.sh
 
 
 
@@ -22,7 +22,9 @@ do
 
 
 
-	find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep COUNT | while read -r line
+	find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep BLOCK | while read -r line
+	#find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep COUNT | while read -r line
+	#find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep ALLOW | while read -r line
 	#find . -name "aws-waf-logs*" | sort |  xargs cat | grep ALLOW | while read -r line
 	do
 	  echo "\n"
@@ -33,7 +35,7 @@ do
 	  echo "Host: \c" 
 	  echo $line | awk -F 'ost' '{ print $2}' | awk -F 'value' '{ print $2}' | cut -d'"' -f3
 	  echo "URI: \c" 
-	  echo $line | awk -F 'uri' '{ print $2}' | cut -d'"' -f3
+	  echo $line | awk -F 'uri"' '{ print $2}' | cut -d'"' -f2
 	  echo "RuleID: \c" 
 	  echo $line | awk -F 'ruleId' '{ print $2}' | cut -d'"' -f3
 	  echo "ClientIP: \c" 
