@@ -21,8 +21,11 @@ do
    echo $dayFilter
 
 
+	# With Day Filter
+	#find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep BLOCK | while read -r line
 
-	find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep BLOCK | while read -r line
+	# Without Day Filter # Bloklama sayisi ile grafik olusturmak icin kullaniyorum.
+	find . -name "aws-waf-logs*" | sort |  xargs cat | grep BLOCK | while read -r line
 	#find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep COUNT | while read -r line
 	#find . -name "aws-waf-logs*" | sort | grep $dayFilter | xargs cat | grep ALLOW | while read -r line
 	#find . -name "aws-waf-logs*" | sort |  xargs cat | grep ALLOW | while read -r line

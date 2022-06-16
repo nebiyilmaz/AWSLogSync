@@ -10,6 +10,6 @@ echo "MFA Token:\c"
 read mfaToken
 
 
-assume-role $assumeID  $assumeRole $mfaToken > .session
+assume-role $assumeID  $assumeRole $mfaToken > Session.ini 
 
 
